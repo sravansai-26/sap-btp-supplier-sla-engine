@@ -1,0 +1,170 @@
+@Metadata.layer: #CORE
+
+@UI: {
+  headerInfo: {
+    typeName: 'Supplier SLA Record',
+    typeNamePlural: 'Supplier SLA Records',
+    title: {
+      type: #STANDARD,
+      value: 'VendorId'
+    },
+    description: {
+      value: 'PoNumber'
+    }
+  }
+}
+
+annotate entity ZC_SUPPLIER_SLA
+with
+{
+  @UI.facet: [
+    {
+      id: 'SupplierSLA',
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Supplier SLA Details',
+      position: 10
+    }
+  ]
+
+  @UI.lineItem: [
+    {
+      position: 10,
+      label: 'Vendor ID'
+    }
+  ]
+  @UI.identification: [
+    {
+      position: 10,
+      label: 'Vendor ID'
+    }
+  ]
+  VendorId;
+
+  @UI.lineItem: [
+    {
+      position: 20,
+      label: 'PO Number'
+    }
+  ]
+  @UI.identification: [
+    {
+      position: 20,
+      label: 'PO Number'
+    }
+  ]
+  PoNumber;
+
+  @UI.lineItem: [
+    {
+      position: 30,
+      label: 'Expected Delivery'
+    }
+  ]
+  @UI.identification: [
+    {
+      position: 30,
+      label: 'Expected Delivery'
+    }
+  ]
+  ExpectedDelivery;
+
+  @UI.lineItem: [
+    {
+      position: 40,
+      label: 'Actual Delivery'
+    }
+  ]
+  @UI.identification: [
+    {
+      position: 40,
+      label: 'Actual Delivery'
+    }
+  ]
+  ActualDelivery;
+
+  @UI.lineItem: [
+    {
+      position: 50,
+      label: 'Delay Days'
+    }
+  ]
+  @UI.identification: [
+    {
+      position: 50,
+      label: 'Delay Days'
+    }
+  ]
+  DelayDays;
+
+  @UI.lineItem: [
+    {
+      position: 60,
+      label: 'Penalty Rate'
+    }
+  ]
+  @UI.identification: [
+    {
+      position: 60,
+      label: 'Penalty Rate'
+    }
+  ]
+  PenaltyRate;
+
+  @UI.lineItem: [
+    {
+      position: 70,
+      label: 'Penalty Amount'
+    }
+  ]
+  @UI.identification: [
+    {
+      position: 70,
+      label: 'Penalty Amount'
+    }
+  ]
+  PenaltyAmount;
+
+  @UI.lineItem: [
+    {
+      position: 80,
+      label: 'Currency'
+    }
+  ]
+  @UI.identification: [
+    {
+      position: 80,
+      label: 'Currency'
+    }
+  ]
+  Currency;
+
+  @UI.lineItem: [
+    {
+      position: 90,
+      label: 'Status'
+    }
+  ]
+  @UI.identification: [
+    {
+      position: 90,
+      label: 'Status'
+    }
+  ]
+  Status;
+
+  @UI.identification: [
+    {
+      position: 100,
+      label: 'Created By'
+    }
+  ]
+  CreatedBy;
+
+  @UI.identification: [
+    {
+      position: 110,
+      label: 'Created At'
+    }
+  ]
+  CreatedAt;
+}

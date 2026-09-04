@@ -1,0 +1,5 @@
+CLASS zbp_i_supplier_sla DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zi_supplier_sla.
+ENDCLASS.
+
+CLASS zbp_i_supplier_sla IMPLEMENTATION.
+ENDCLASS.

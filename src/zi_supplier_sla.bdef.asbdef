@@ -1,0 +1,63 @@
+managed implementation in class zbp_i_supplier_sla unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZI_SUPPLIER_SLA alias SLALog
+persistent table zslarecord
+draft table zslarecord_d
+lock master
+total etag LastChangedAt
+authorization master ( global, instance )
+etag master LocalLastChangedAt
+{
+  create;
+  update;
+  delete;
+
+  field ( readonly, numbering : managed ) RecordUuid;
+  field ( readonly ) DelayDays, PenaltyAmount;
+  field ( readonly ) CreatedBy, CreatedAt, LastChangedBy, LastChangedAt, LocalLastChangedAt;
+
+  // 1. Determination: auto-calculate delay and penalty
+  determination calculatePenalty on modify {
+    field ExpectedDelivery, ActualDelivery, PenaltyRate;
+  }
+
+  // 2. Validation: prevent future actual delivery dates
+  validation validateDates on save {
+    field ActualDelivery;
+    create; update;
+  }
+
+  // 3. Business Actions
+  action approvePenalty result [1] $self;
+  action waivePenalty result [1] $self;
+
+  draft action Edit;
+  draft action Resume;
+  draft action Activate optimized;
+  draft action Discard;
+  draft determine action Prepare
+  {
+    validation validateDates;
+  }
+
+  mapping for zslarecord
+  {
+    RecordUuid         = record_uuid;
+    VendorId           = vendor_id;
+    PoNumber           = po_number;
+    ExpectedDelivery   = expected_delivery;
+    ActualDelivery     = actual_delivery;
+    DelayDays          = delay_days;
+    PenaltyRate        = penalty_rate;
+    Currency           = currency;
+    PenaltyAmount      = penalty_amount;
+    Status             = status;
+    CreatedBy          = created_by;
+    CreatedAt          = created_at;
+    LastChangedBy      = last_changed_by;
+    LastChangedAt      = last_changed_at;
+    LocalLastChangedAt = local_last_changed_at;
+  }
+}

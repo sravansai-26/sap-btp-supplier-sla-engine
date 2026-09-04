@@ -1,0 +1,19 @@
+projection;
+strict ( 2 );
+use draft;
+
+define behavior for ZC_SUPPLIER_SLA alias SLALog
+{
+  use create;
+  use update;
+  use delete;
+
+  use action approvePenalty;
+  use action waivePenalty;
+
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+}

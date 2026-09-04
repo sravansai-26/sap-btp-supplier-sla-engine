@@ -1,0 +1,91 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'SLA Record',
+    typeNamePlural: 'Supplier SLA Records',
+    title: { type: #STANDARD, value: 'PoNumber' },
+    description: { value: 'VendorId' }
+  }
+}
+annotate entity ZC_SUPPLIER_SLA with
+{
+  @UI.facet: [
+    {
+      id: 'GeneralData',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'SLA Details & Financial Calculations',
+      position: 10
+    }
+  ]
+
+  @UI.hidden: true
+  RecordUuid;
+
+  @UI: {
+    lineItem:       [ { position: 10, importance: #HIGH } ],
+    identification: [ { position: 10 } ],
+    selectionField: [ { position: 10 } ]
+  }
+  VendorId;
+
+  @UI: {
+    lineItem:       [ { position: 20, importance: #HIGH } ],
+    identification: [ { position: 20 } ],
+    selectionField: [ { position: 20 } ]
+  }
+  PoNumber;
+
+  @UI: {
+    lineItem:       [ { position: 30 } ],
+    identification: [ { position: 30 } ]
+  }
+  ExpectedDelivery;
+
+  @UI: {
+    lineItem:       [ { position: 40 } ],
+    identification: [ { position: 40 } ]
+  }
+  ActualDelivery;
+
+  @UI: {
+    lineItem:       [ { position: 50, label: 'Delay (Days)' } ],
+    identification: [ { position: 50, label: 'Delay (Days)' } ]
+  }
+  DelayDays;
+
+  @UI: {
+    lineItem:       [ { position: 60 } ],
+    identification: [ { position: 60 } ]
+  }
+  PenaltyRate;
+
+  @UI: {
+    lineItem: [
+      { position: 70, importance: #HIGH },
+      { type: #FOR_ACTION, dataAction: 'approvePenalty', label: 'Approve Penalty' }
+    ],
+    identification: [
+      { position: 70 },
+      { type: #FOR_ACTION, dataAction: 'approvePenalty', label: 'Approve Penalty' }
+    ]
+  }
+  PenaltyAmount;
+
+  @UI: {
+    identification: [ { position: 80 } ]
+  }
+  Currency;
+
+  @UI: {
+    lineItem: [
+      { position: 90, label: 'Status' },
+      { type: #FOR_ACTION, dataAction: 'waivePenalty', label: 'Waive Penalty' }
+    ],
+    identification: [
+      { position: 90, label: 'Status' },
+      { type: #FOR_ACTION, dataAction: 'waivePenalty', label: 'Waive Penalty' }
+    ]
+  }
+  Status;
+}

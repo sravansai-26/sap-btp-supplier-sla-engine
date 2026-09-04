@@ -1,0 +1,4 @@
+@EndUserText.label: 'Supplier SLA Service Definition'
+define service ZUI_SUPPLIER_SLA {
+  expose ZC_SUPPLIER_SLA;
+}
